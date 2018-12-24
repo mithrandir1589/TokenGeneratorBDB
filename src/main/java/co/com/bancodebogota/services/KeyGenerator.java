@@ -1,3 +1,7 @@
+/**
+ * Crea (como objeto) la llave privada, dado un par de llaves
+ * @author mquint2
+ */
 package co.com.bancodebogota.services;
 
 import java.math.BigInteger;
@@ -8,19 +12,22 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KeyGenerator implements IKeyGenerator{
+	
+	//TODO Definir una ubicacion y forma de generacion de las llaves que actualmente estan en el archivo application.porperties
 	@Value("${key.public}")
 	private String publicKey;
 	
 	@Value("${key.private}")
 	private String privateKey;
 	
-	
+	/**
+	 * @return retorna la llave privada como objeto 
+	 */
 	@Override
 	public PrivateKey getPrivateKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		BigInteger publicKeyInt = new BigInteger(this.publicKey, 16);
@@ -37,7 +44,4 @@ public class KeyGenerator implements IKeyGenerator{
     	
     	return prk;
 	}
-
-
-
 }
