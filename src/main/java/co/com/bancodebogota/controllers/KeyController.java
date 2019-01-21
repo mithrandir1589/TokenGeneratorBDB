@@ -24,4 +24,9 @@ public class KeyController {
 	public String getToken(@PathVariable("username") String username) {
 		return tokenGenerator.getToken(username);
 	}
+	
+	@GetMapping("/")
+	public String getDefault() {
+		return "Working fine";
+	}
 }
